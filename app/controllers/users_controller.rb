@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
 
+    # skip_before_action :index, only: [:new]
+
+    # before_action :authorize_request, except: :index
+
     protect_from_forgery with: :null_session
+
+
 
     def create 
         @user = User.new(fullname:params[:user][:fullname], username:params[:user][:username], password:BCrypt::Password.create(params[:user][:password]))
@@ -20,6 +26,10 @@ class UsersController < ApplicationController
     def logincheck
 
         user = User.find_by(username: params[:user][:username])
+
+        puts JsonWebToken.encode(user)
+
+        # puts JsonWebToken.decode(user)
 
         puts user[:fullname]
         

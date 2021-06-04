@@ -5,6 +5,7 @@ ruby '3.0.1'
 
 gem 'mongoid'
 
+gem 'jwt'
 
 gem 'bcrypt'
 
